@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "workspaces": [
+    "./code/exercise__request",
+    "./ppt"
+  ],
+  "name": "ts-shared",
+  "version": "1.0.0",
+  "author": "wangquanjiang <wangquanjiang@up366.com>",
+  "license": "MIT"
+}
