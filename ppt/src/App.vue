@@ -1,27 +1,43 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <div class="container" :ref="pptRoot">
+    <div class="slides">
+      <section v-bind="md('doc.md')"></section>
+    </div>
+  </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
+<script lang="ts" setup>
+import useInitReveal from './use/useInitReveal'
+import useCodeSize from './use/useCodeFontSize'
 
-export default defineComponent({
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+const pptRoot = useInitReveal({
+  progress: false,
+  hash: true,
+  embedded: true,
+  preloadIframes: true,
+  width: 1400,
+  height: 900
 })
+
+const codeSize = useCodeSize()
+
+function md(path: string): object {
+  return {
+    'data-markdown':           path,
+    'data-separator':          '^<!-- next -->',
+    'data-separator-vertical': '^<!-- more -->'
+  }
+}
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.reveal pre code {
+  font-size: v-bind(codeSize);
+}
+</style>
+
+<style scoped>
+.container {
+  height: 100vh;
 }
 </style>

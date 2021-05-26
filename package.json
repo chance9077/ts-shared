@@ -6,6 +6,9 @@
   ],
   "name": "ts-shared",
   "version": "1.0.0",
+  "scripts": {
+    "ppt": "yarn workspace ppt run dev"
+  },
   "author": "wangquanjiang <wangquanjiang@up366.com>",
   "license": "MIT"
 }

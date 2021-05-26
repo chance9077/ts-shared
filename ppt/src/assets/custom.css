@@ -1,0 +1,45 @@
+::-webkit-scrollbar{
+  width: 5px !important;
+  height: 5px !important;
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb{
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  background-color: transparent;
+}
+:hover::-webkit-scrollbar-thumb{
+  background-color: rgba(144, 147, 153, 0.1);
+}
+
+.reveal-viewport {
+  background-color: #282c34;
+}
+
+.reveal pre {
+  width: 100%;
+}
+
+.reveal pre code {
+  max-height: 70vh;
+  padding: 20px;
+  font-family: Fira Code;
+  border-radius: 5px;
+  line-height: 1.5;
+}
+
+section {
+  color: #c3c6cc;
+}
+
+section li {
+  line-height: 2;
+}
+
+section a {
+  font-size: 24px;
+}
+
+section h1, section h2, section h3, section h4, section h5, section h6 {
+  text-transform: none !important;
+}
