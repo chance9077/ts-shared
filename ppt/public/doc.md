@@ -34,7 +34,9 @@
 - @enum
 - @deprecated
 
-JSDoc 提供了很多标签，使用以上列出的标签就可以满足我们的需求
+JSDoc 提供了很多标签
+
+使用以上列出的标签就可以满足我们的需求
 <!-- next -->
 ## @type
 
@@ -246,7 +248,29 @@ TypeScript 还有很多优点，可以在众多文档中学习：
 
 [抛弃 JS，使用 TypeScript](https://juejin.cn/post/6844903877859360776)
 <!-- next -->
-## TypeScript 类型
+## TypeScript
+## 语法
+TypeScript 主要通过类型后置语法来标注类型
+<!-- more -->
+```typescript
+let name: string = 'hello world'
+
+function sum(a: number, b: number): void {
+  return a + b
+}
+```
+<!-- more -->
+我们可以把 : 后面的 string 换成其他类型
+
+JavaScript 原始类型都有着对应的 TypeScript 类型：
+
+string、number、boolean、undefined、symbol、undefined、null
+
+[Playground](https://www.typescriptlang.org/play?#code/DYUwLgBAzmBOBc04EsB2BzCBeCByAFiMMAPa4CwAUFaJKgK4C2iDjARiLNhAIwBMAZio1wEAGbAAhukRsSJUJNTc49EMMq0IqEonqoAJiDFoQB7gDcSycwAYNWqAE9m0F3ODcAyu4UAKAEoHUQZgFnpiblDgIA)
+
+<!-- more -->
+## 类型
+
 - 基础类型
 - Arrays
 - Enum
@@ -261,4 +285,284 @@ TypeScript 还有很多优点，可以在众多文档中学习：
 - Literal
 - Union
 - Intersection
+<!-- more -->
+## Arrays 类型
+```typescript
+let arr1: number[] = [1, 2, 3]
+
+let arr2: Array<number> = [1, 2, 3]
+```
+<!-- more -->
+## Enum 类型
+```typescript
+enum PopoverDirection {
+  TOP, RIGHT, BOTTOM, LEFT
+}
+```
+[Playground](https://www.typescriptlang.org/play#code/KYOwrgtgBACg9gBzgN2AJwCIEs3AMYAuWcIUA3gFBRQAqA8jADRQBKAkgOIASNzAQnRr0AsswAyAUQBiNCgF8gA)
+<!-- more -->
+## Any 类型
+```typescript
+let value: any = 1
+
+value = '123'
+
+value()
+```
+any 类型是 TypeScript 中的顶级类型
+
+使用 any 类型会丢失类型检查
+
+在项目中我们可以配置 noImplicitAny 使任何隐式 any 类型报错
+<!-- more -->
+## UnKnown 类型
+unknown 类型和 any 类型类似
+
+所有类型都可以赋值给 unknown 类型
+
+不同的是使用 unknown 类型是类型安全的
+
+我们可以对一些不确定的操作结果设置为 unknown 类型。
+
+[Playground](https://www.typescriptlang.org/play/#code/PTAEAEFMCdoe2gZwFygEwFYDsBGAUAGYCuAdgMYAuAlnCaATgBQCGqzJAngJSgDeeoUMwB0AI0ZcA3KBCgA8gGk8AX0KlKNOgTQtUpANYk4AdxI9+gkeKkqgA)
+<!-- more -->
+## Tuple 类型
+```typescript
+let t: [string, number] = ['1', 2]
+```
+<!-- more -->
+## Void
+## Null
+## Undefined
+```typescript
+function foo(): void {}
+
+let u: undefined = undefined
+
+u = void 0
+
+let n: null = null
+
+n = void 0
+```
+<!-- more -->
+## Never
+表示永不存在的值，比如抛出异常、不会有返回值的表达式或者分支中的默认分支
+
+[Playground](https://www.typescriptlang.org/play?#code/JYOwLgpgTgZghgYwgAgGIHt3IN4ChnJgCeADhAFzIDkMmVuAvrrqJLIigEJxQ76GkK1AEY96TXMTLIAggBs5yALxpMyAD7JuUXAHpdA6fMUqMWTdo3IADMxgBXEAjDB0IZAAs4IACZyIAGpwcvYQABQAbsGUxgCUfAQAzgDuwGAIHsiRwQB0UhDxeAQECHCJKDR05PzFyPrIgJvxgDOJyFGKgNURgGymgCFegFxyqug1xcJQEHAA1kOl5SJi1bUE9W3IgBTqzYD0Zlo8QwQjY5O1PhDw9nJg8wtLwasbyCAQEdA7yAhuiWDIEAAeXvbvwI8AMIeCAIcaUe6PXgqNrPPYTfhMBhAA)
+```typescript
+function error(): never {
+	throw new Error()
+}
+
+function loop(): never {
+	while (true) {}
+}
+```
+
+一些参考：
+
+[尤雨溪](https://www.zhihu.com/question/354601204)
+[官方文档](https://www.typescriptlang.org/docs/handbook/2/functions.html#never)
+<!-- more -->
+## Literal
+```typescript
+const str = '123'
+
+let x: 1 = 1
+```
+<!-- more -->
+定义一个字面类型作用不大
+
+一般字面类型结合 Union 类型使用
+
+表达一个更具体的概念
+
+还可以使用 as const 将整个对象作为字面类型使用
+```typescript
+const req = { url: '', method: 'GET' } as const
+```
+[Playground](https://www.typescriptlang.org/play?#code/C4TwDgpgBAshwAsD2ATAzlAvFA5AcQFEAVHKAH1wAUB5AZRICgGAzAVwDsBjYASyXagAnCAEdWENMAAUAW3jIUALljzUaADRRWggDbLJgnuwDmmlAENg5gPzKkAIwBWEbgEooAbwZQoAel9QRNQAItQMAL5MnPySQqJYnt5QcoioyvjEOOpJ2nq4WUkWVsoekZEM-smqSlAGRsYMwmIS0k0AdCkKmu253aJtReauQA)
+<!-- more -->
+## Union
+TypeScript 可以使用运算符在现有类型上构建新的类型，比如联合类型。它由多个类型组成，表示可能是这些类型中的任何一个
+
+[Playground1](https://www.typescriptlang.org/play?#code/JYOwLgpgTgZghgYwgAgCIHsDmyDeAoZZMATwAcIAuZAckF4NwNh3qDkE4AbNqgCgEpkBeAHzIAbumAATZjBABGbnyGjxUgL548oSLEQoAwnDC5mJclTqBePaaFWHBQOFjJ0kACZ7Sp2o0J0IAM5GcCDAALbsVBjYAD7IBkb8xoSmlDQM1AA0zLacyLwOuKpZhDLyeYrCOOqqQA) [Playground2](https://www.typescriptlang.org/play#code/PTAEAEFMCdoe2gZwFygEwGYAsBWAUAGYCuAdgMYAuAlnCaAA7RUkUCSAJgBRXuolEBbAEYxQAH1CIKTEgHMAlKADeeUKDK1EcADaQAdNrizOAIgCacItFCsAIqCopQJ0AGoH7eQG48AXzwgoADyANJ4jMxsXACMAAzR3gFgoeEyUaZosWgmiYEAorAIqZEcnEqgAgCedqhomFhooL7eQA) [Playground3](https://www.typescriptlang.org/play?#code/C4TwDgpgBAshwAsD2ATAzlAvFA5AcQFEAVHKAH1wAUB5AZRICgGAzAVwDsBjYASyXagAnCAEdWENMAAUAW3jIUALljzUaADRRWggDbLJgnuwDmmlAENg5gPzKkAIwBWEbgEooAbwZQoAel9QRNQAItQMAL5MwmIS0vjEOJo4OK5AA)
+```typescript
+let a: number | string = 1
+
+a = '1'
+```
+联合类型可以配合字面类型对赋值做一些限定
+<!-- more -->
+## Intersection 交叉类型
+交叉类型类似于将多个类型叠加在一起
+```typescript
+interface Animal {
+	type: string
+	call: () => void
+}
+
+interface DogType {
+	type: 'dog'
+}
+
+type Dog = Animal & DogType
+
+const dog: Dog = {
+	type: 'dog',
+	call: () => {}
+}
+```
+[Playground1](https://www.typescriptlang.org/play?#code/JYOwLgpgTgZghgYwgAgIImAWzgG2QbwFgAoASDAE8AHCALmQGcwpQBzE0hXHegCgEpkAXgB8yAG4B7YABMSAXxIlQkWIhQARSawAq1FETKUa9AOQztphUuLHN24WgzY8AMmRbd+mwkkgmyBas9J6OhsjIdmZBpgA0JBFcODzIAsJi+IrE8kA)
+[Playground2](https://www.typescriptlang.org/play?#code/JYOwLgpgTgZghgYwgAgKJSgeygCTiAEwBtQBzZAbwChlkBnAVwSTroC5kAjTTIifANw1k0LFAD8HCsgC2EVnFIQOdMFDLIAvkM1UqoSLEQoAglDAB3bAGs6AEThg4lYXHNWotqcjDAwfFTUNTQBtAF0dPQNoeCRkM19Ve0dnalo3RLB2SmQQODlA9RByUIiqXSoAekrkABUAC3kUaKMWZDcUBEwZAAdMOggCH0xkergANwgqmq6QOmBVCHARDGxR-GIyABp2wh9G4ChkTAsQZAIUgDo9MABPHtN3GzoAJXk+uZQAXninz2SnMgAGRoVa4DYkYpCO4PX6ZV7vTCfZA-BILLIOQEg9BiPCESGkIRUWaqdb4iBopJvOgfAYo5AACigiM+HEpWWptIgAEoUQA+Fy0YAwRnMmlIgaXUTYXlpWjIEm8CBSsFMlmS6VQS5yBRKblCeXIZlgBhQEAGrR6WiKviXIiYUhq8WfS4ZdF0fXlARAA)
+<!-- more -->
+## Object 类型
+TypeScript 中的 Object 类型和 JavaScript 中的对象类似，只不过 Object types 只有类型
+```typescript
+let person = {
+	name: 'foo',
+	age: 12
+}
+
+let p: { name: string, age: number } = {
+	name: 'foo',
+	age: 12
+}
+```
+
+[类型详细参考文档](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html)
 <!-- next -->
+# Functions
+<!-- more -->
+TypeScript 支持设置函数参数和返回类型
+```typescript
+function sum(a: string, b: string): number {
+	return +(a + b)
+}
+```
+<!-- more -->
+和变量类型一样，通常不需要注释返回类型
+
+存在上下文时，TypeScript 可以自己推导出参数类型
+
+[Playground](https://www.typescriptlang.org/play?#code/DYUwLgBAdgrgtgZwgXggbQIwBoICYcDMAugFAmyIB0AZgPYBOAogIYDGAFgBQCWYIcKAHwQA3gF8AlEA)
+```typescript
+let nums = [1, 2, 3]
+
+nums.forEach(item => {})
+
+// 这里的 item 会自动推导为 number 类型
+```
+<!-- more -->
+## 定义一个函数类型
+
+[Playground](https://www.typescriptlang.org/play?#code/DYUwLgBAzgrgtgLggCgIZIHbwEYgE4A0E2mO+AlBALwB8EWcueAUM7HNRAGYwYDGYAJYB7DGiLZKAb2YQIecDDwYIqCAGpizAL6se-IaOjwATGiRQweQRgDmEi1Zu3ps+YuWqNW3W3id2EwgAemCIAFE8PGE8IA)
+
+```typescript
+let sum: (a: number, b: number) => number
+
+sum = function(a, b) {
+  return a + b
+}
+
+function sum2(a: string, b: string) {
+  return a + b
+}
+
+sum = sum2 // Error
+```
+<!-- more -->
+## 函数重载
+
+[Playground](https://www.typescriptlang.org/play?#code/GYVwdgxgLglg9mABAZxAWwBQEMBcizoBGApgE4A0iheBaJpAlDUWQFCiSwIrrbN1lK1fCwqIIAfn70mIgaXbho8JKky459IdMHipm3QBN9hOHAA2xLGFm16iAD4oopGGADmjxADc4MQ4gA3qyIiDDAiNik7ujEYFDIAHSWHlAAFogAvNmIAEwMQSGhiKTEUCCkSFiIANRURQC+iMTmyMRhEVExaHEJyXHu6Vk5AMwFwcUlZRVVtVRzEI3Nre3hkVjRsfFJKYMZ2ZmIACzjRaGl5ZWIARKI1XWEC4h4AAYAJIH383UQDS9LLTahUmFxmPj8AQADI1WA1WKxLFBxHBwFAAIxZHiYNGUfIIsrI1G5TFqDA4vKUMb4pEQFHxEYk3jk3KUyguEDEAoAei5iAAoqRSHBSEA)
+```typescript
+function sum(a: number, b: number): number
+function sum(a: number, b: number, c?: number): number
+function sum(a: number, b: number, c?: number, d?: boolean): number | string | void {
+  if (arguments.length === 2) {
+    return a + b
+  } else if (arguments.length === 3) {
+    return a + b + c
+  } else if (arguments.length === 4) {
+    return d ? a + b + c : `${a + b + c}`
+  } else {
+    return void 0
+  }
+}
+
+let count1 = sum(1, 2)
+let count2 = sum(1, 2, 3)
+let count3 = sum(1, 2, 3, true) // Error
+```
+<!-- more -->
+## 泛型函数
+
+如何让我们的函数更具灵活性，
+
+根据我们的输入类型，返回对应的类型
+
+在 TypeScript 中使用 泛型 表示两个类型之间的关系
+
+这里简单说一下泛型在函数中使用
+
+泛型作用可以回想一下之前的 api 模块代码
+```typescript
+function print<T>(target: T): T {
+	return target
+}
+```
+<!-- next -->
+## Optional Properties
+可以使用 ? 设置对象属性为可选属性
+
+或者
+
+设置函数参数为可选参数
+```typescript
+function printName(obj: { first: string; last?: string }) {}
+
+let person: { name: string; age?: 12 } = {
+	name: 'foo'
+}
+```
+使用 ?. 操作符获取可选属性值
+
+[Playground](https://www.typescriptlang.org/play?#code/PTAEAEFMCdoe2gZwFygEwFYDMaBQAzAVwDsBjAFwEs5jQAHaS48gOQEMBbSACjgCMAVqgDeofJSTlUico2IBzANygANmxkB+abKbzQAXwCUoYblCgQoAKKwEoALSgOleQAtyoUtHWvQlfKAA5PwCAHRqMoGgAO7qxIEeDHAAbpQAJpBpAIRmnjSIcCqQ4XDyvILh6uSh5HAAqnR0MADC6jyGhoq5-qDlYREeWQC8Q6AkGeLEmcam5uaWAPIA0rnmpPmFxSqlfZUyNfWNLW3cHV3m+ri5lgCCoIhs+JCgbCrkMMRsVMnPhIi6TjgGWgtAAUmxkmwAMpeSh0DyIACezDYAA9kLl1sQCkUSmUQntyBoDg0mtBWoh2p1cPogA)
+<!-- next -->
+## 断言
+```typescript
+let value: any = [1, 2, 3]
+
+(value as number[]).forEach(() => {})
+
+let len: number = (<number[]>value).length
+```
+<!-- next -->
+## Type Aliases
+## 类型别名
+可以使用 type 关键字命名一个类型
+```typescript
+type Point = {
+	x: number
+	y: number
+}
+
+let point1: Point = {
+	x: 1,
+	y: 2
+}
+
+type boolean = true | false
+```
+<!-- next -->
+## Interfaces
+可以使用 Interfaces 命名一个对象类型
+```typescript
+interface Point {
+	x: number
+	y: number
+}
+```
+<!-- next -->
+# more...

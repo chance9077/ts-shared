@@ -15,7 +15,7 @@ const pptRoot = useInitReveal({
   hash: true,
   embedded: true,
   preloadIframes: true,
-  width: 1400,
+  width: 1200,
   height: 900
 })
 

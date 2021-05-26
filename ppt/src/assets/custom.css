@@ -40,6 +40,10 @@ section a {
   font-size: 24px;
 }
 
+section p {
+  line-height: 1.5;
+}
+
 section h1, section h2, section h3, section h4, section h5, section h6 {
   text-transform: none !important;
 }
