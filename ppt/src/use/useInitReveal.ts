@@ -6,6 +6,7 @@ import '../assets/custom.css'
 import '../assets/atom-one-dark.css'
 import Markdown from 'reveal.js/plugin/markdown/markdown.js'
 import Highlight from 'reveal.js/plugin/highlight/highlight.js'
+import Zoom from 'reveal.js/plugin/zoom/zoom.js'
 import { onMounted } from 'vue'
 
 export default function(options: {} = {}) {
@@ -20,7 +21,7 @@ export default function(options: {} = {}) {
     }
     const deck = new Reveal(el, {
       ...options,
-      plugins: [ Markdown, Highlight ]
+      plugins: [ Markdown, Highlight, Zoom ]
     })
     deck.initialize()
   })

@@ -12,7 +12,7 @@
   background-color: rgba(144, 147, 153, 0.1);
 }
 
-.reveal-viewport {
+html, .reveal-viewport {
   background-color: #282c34;
 }
 
@@ -41,7 +41,7 @@ section a {
 }
 
 section p {
-  line-height: 1.5;
+  line-height: 1.5 !important;
 }
 
 section h1, section h2, section h3, section h4, section h5, section h6 {
