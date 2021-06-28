@@ -8,10 +8,13 @@ import Markdown from 'reveal.js/plugin/markdown/markdown.js'
 import Highlight from 'reveal.js/plugin/highlight/highlight.js'
 import Zoom from 'reveal.js/plugin/zoom/zoom.js'
 import { onMounted } from 'vue'
+import { ComponentInternalInstance } from '@vue/runtime-core'
 
 export default function(options: {} = {}) {
   let el: HTMLElement
-  const root = (target: HTMLElement) => el = target
+  const root = (target: Element | ComponentInternalInstance | null) => {
+    el = target as HTMLElement
+  }
 
   onMounted(() => {
     if (!el) return
