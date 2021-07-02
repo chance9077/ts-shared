@@ -76,6 +76,11 @@ ts-node@^10.0.0:
     source-map-support "^0.5.17"
     yn "3.1.1"
 
+type-fest@^1.2.1:
+  version "1.2.1"
+  resolved "http://192.168.0.198:8081/repository/npm-group/type-fest/-/type-fest-1.2.1.tgz#232990aa513f3f5223abf54363975dfe3a121a2e"
+  integrity sha1-IymQqlE/P1Ijq/VDY5dd/joSGi4=
+
 typescript@^4.3.4:
   version "4.3.4"
   resolved "http://192.168.0.198:8081/repository/npm-group/typescript/-/typescript-4.3.4.tgz#3f85b986945bcf31071decdd96cf8bfa65f9dcbc"

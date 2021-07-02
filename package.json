@@ -2,7 +2,7 @@
   "private": true,
   "workspaces": [
     "./code/exercise__request",
-    "./code/exercise__design",
+    "./code/exercise__ts",
     "./ppt"
   ],
   "name": "ts-shared",
